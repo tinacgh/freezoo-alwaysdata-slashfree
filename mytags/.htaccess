@@ -1,0 +1,4 @@
+AuthUserFile /home/freezoo/.htpasswd
+AuthType Basic
+AuthName "My Tags"
+Require valid-user

@@ -1,0 +1,462 @@
+<html>
+    <head>
+    <title>Pedidos Pontual</title>
+    <style>
+      body, td {
+      font-family: Arial, sans-serif;
+      font-size: 12px; 
+      }
+      .header { position: fixed; top: 0px; background-color: #eee; padding: 3px; }
+      .hidden { visibility: hidden; }        
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+  <a href="/pedidos/todos/">Todos</a> |
+
+  <a href="/pedidos/prodsreserva/">P Resv.</a> -
+  <a href="/pedidos/prodscontainer/">P Cont.</a> -
+  <a href="/pedidos/prodsdesistencia/">P Desist.</a> |
+
+  <a href="/pedidos/total/">Total</a> -
+  <a href="/pedidos/produtos/">Prods.</a> -
+  <a href="/pedidos/clientes/">Clientes</a> -
+  <a href="/pedidos/listcontainers/">List cont.</a> |
+  
+  <a href="/pedidos/reserva/">Resv.</a> -
+  <a href="/pedidos/container/">Cont.</a> -
+  <a href="/pedidos/desistencia/">Desist.</a> |
+
+  <a href="/pedidos/vencem/">Vencem</a> -
+  <a href="/pedidos/vencehoje/">Vence hoje</a> -
+  <a href="/pedidos/vencidos/">Vencido</a> |
+
+  <a href="/admin/" target="_blank">Admin</a>
+</div>
+
+    <br>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 09/08/2013, sexta-feira</td>
+        <td align="right">
+          ID: 16
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: </td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/5/cliente">Karen Cristina</a></td>
+        <td align="right">Cód. Cliente: 3643</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 15 dias -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Marcia</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">201</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143139A/produto/"><b>143139A</b> Lanterna c/ chaveiro</a> - 
+                <a href="/pedidos/143139A/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Aguardar container
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+          <a href="/pedidos/1333/container/">1333</a>
+          
+        </td>
+        <td>Extra: <b></b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/16/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(16);">
+          <a href="/pedidos/todos/16/delete/" id="16" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 12/08/2013, segunda-feira</td>
+        <td align="right">
+          ID: 34
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: </td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/34/cliente">A. P. Comercio</a></td>
+        <td align="right">Cód. Cliente: 3633</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 15 dias -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Marlene</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">500</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143176A/produto/"><b>143176A</b> Garrafa plastica dobravel p/ agua</a> - 
+                <a href="/pedidos/143176A/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Aguardar container, reserva
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+          <a href="/pedidos/1334/container/">1334</a>
+          
+        </td>
+        <td>Extra: <b></b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/34/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(34);">
+          <a href="/pedidos/todos/34/delete/" id="34" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 13/08/2013, terça-feira</td>
+        <td align="right">
+          ID: 54
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: </td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/20/cliente">Joao S. Jorge</a></td>
+        <td align="right">Cód. Cliente: 3340</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 20 dias -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Cida</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">10</td>
+              <td align="center">cx</td>
+              <td>
+                <a href="/pedidos/143201A/produto/"><b>143201A</b> Chaveiro de metal Aparecida</a> - 
+                <a href="/pedidos/143201A/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Aguardar container
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+          <a href="/pedidos/1338/container/">1338</a>
+          
+        </td>
+        <td>Extra: <b>1</b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/54/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(54);">
+          <a href="/pedidos/todos/54/delete/" id="54" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 19/08/2013, segunda-feira</td>
+        <td align="right">
+          ID: 17
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: </td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/19/cliente">Washington Kennedy de Faria</a></td>
+        <td align="right">Cód. Cliente: 1493</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 15 dias -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Celia</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">2</td>
+              <td align="center">vol</td>
+              <td>
+                <a href="/pedidos/143208A/produto/"><b>143208A</b> Chaveiro de metal Aparecida</a> - 
+                <a href="/pedidos/143208A/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Aguardar container
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+          <a href="/pedidos/1333/container/">1333</a>
+          
+        </td>
+        <td>Extra: <b>1</b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/17/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(17);">
+          <a href="/pedidos/todos/17/delete/" id="17" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 19/08/2013, segunda-feira</td>
+        <td align="right">
+          ID: 18
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: </td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/20/cliente">Joao S. Jorge</a></td>
+        <td align="right">Cód. Cliente: 3340</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 20 dias -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Cida</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">5</td>
+              <td align="center">cx</td>
+              <td>
+                <a href="/pedidos/143208A/produto/"><b>143208A</b> Chaveiro de metal Aparecida</a> - 
+                <a href="/pedidos/143208A/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Aguardar container
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+          <a href="/pedidos/1333/container/">1333</a>
+          
+        </td>
+        <td>Extra: <b>3</b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/18/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(18);">
+          <a href="/pedidos/todos/18/delete/" id="18" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 19/08/2013, segunda-feira</td>
+        <td align="right">
+          ID: 19
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: </td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/21/cliente">Wanderley Franklin Soares</a></td>
+        <td align="right">Cód. Cliente: 3026</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: a vista -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Celia</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">5</td>
+              <td align="center">vol</td>
+              <td>
+                <a href="/pedidos/143208A/produto/"><b>143208A</b> Chaveiro de metal Aparecida</a> - 
+                <a href="/pedidos/143208A/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Aguardar container, aguardar pagamento
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+          <a href="/pedidos/1333/container/">1333</a>
+          
+        </td>
+        <td>Extra: <b>4</b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/19/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(19);">
+          <a href="/pedidos/todos/19/delete/" id="19" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <script>
+      function toggleText(id) {
+        document.getElementById(id).style.visibility="visible";
+      }
+    </script>
+  </body>
+</html>
+
+

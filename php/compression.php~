@@ -1,0 +1,11 @@
+<?php
+
+// to compress
+$tocomp = $_GET['plain'];
+
+// to decompress
+$todecomp = $_GET['code'];
+
+echo base64_encode(gzcompress($tocomp));
+
+?>

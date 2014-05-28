@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <style type="text/css">
+      #countdown { position: absolute; left:-50px; top:90px; font-family: Arial, sans-serif; font-size: 72px; color: #ccc; -webkit-transform: rotate(90deg); }
+    </style>
+    <script type="text/javascript" src="freezoomaps/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript">
+      var running;
+      var blink;
+
+      function update() {
+        var i = 0;
+        clearInterval(running);
+        clearInterval(blink);
+        $("#countdown").css("color", "#ccc");
+        var secs = minsToSecs($("#mins").val());
+        running = setInterval(function() { 
+          formatSecs(secs);
+          secs -= 1;
+          if(secs < 0) {
+            clearInterval(running);
+            blink = setInterval(function () { 
+              document.title == "END" ? document.title = "Timer" : document.title = "END"; 
+              if(i > 3) {
+                clearInterval(blink);
+              };
+              i++;
+            }, 800);
+          }
+	}, 1000);
+      }
+
+      function minsToSecs(mins) {
+        mins = parseFloat(mins);
+        return Math.floor(mins*60);
+	alert(Math.floor(mins*60));
+      }
+
+      function formatSecs(secs) {
+        secs = parseInt(secs);
+        ss = secs % 60;
+        mm = Math.floor(secs / 60.0);
+        if(ss < 10) { ss = "0" + ss; }
+        if(mm < 10) { mm = "0" + mm; }
+        fmt = mm + ":" + ss;
+	if(mm == 0 && ss == 10) {
+          $("#countdown").css('color', '#f99');
+	}
+	if(ss % 10 == 0) {
+          $("#countdown").text(fmt);
+          document.title = fmt;
+	}
+	if(mm == 0 && ss == 0) {
+	  blinkCountdown(4);
+	}
+      }
+
+      function blinkCountdown(times) {
+	var i = 0;
+	var state = 0;
+        blinkC = setInterval(function () { 
+   	  if(state == 1) {
+            $("#countdown").css('color', '#f99');
+            state = 0;
+	  }
+          else {
+            $("#countdown").css('color', '#ccc');
+            state = 1;
+          }
+          if(i > times) {
+            clearInterval(blinkC);
+          };
+          i++;
+        }, 800);
+      }
+
+      $(function() {
+        $("#start").click(update);
+      });
+    </script>
+  </head>
+  <body>
+    Minutes: <input id="mins" type="text" value="15">
+    <input id="start" type="button" value="Start">
+    <div id="countdown"></div>
+  </body>
+</html>

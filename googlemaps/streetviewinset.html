@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- http://stackoverflow.com/q/10777185/1238040 -->
+<html>
+<head>
+  <style type="text/css">
+html, body { margin: 0; padding: 0; height: 100%; }
+
+#container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#pano {
+    position: absolute;
+    top: 0; left: 0;
+}
+
+#map_canvas {
+    position: absolute;
+    z-index: 2;
+}
+
+.bigmap{
+    width:100%;
+    height:100%;
+    top: 0; left: 0;
+}
+
+.minimap{
+    width:320px;
+    height:320px;
+    top: 48px; left: 98px;
+}
+  </style>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false">
+</script>    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript">
+    function initialize() {
+    var initialCenter = new google.maps.LatLng(-23.5449009175752, -46.64334576881714);
+    var panoramaOptions = {
+        enableCloseButton : true,
+        visible: false
+    };
+    var panorama = new google.maps.StreetViewPanorama(document.getElementById("pano"), panoramaOptions);
+    var mapOptions = {
+      center: initialCenter,
+      zoom: 16,
+      mapTypeId: google.maps.MapTypeId.ROADMAP,
+      streetView : panorama
+    };
+    var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+    google.maps.event.addListener(panorama, "position_changed", function() {
+      map.setCenter(this.getPosition());
+    });
+       
+    google.maps.event.addListener(panorama, "visible_changed", function() {
+        if (panorama.getVisible() && $("#pano").is(':visible')){
+            //moving the pegman around the map
+        }else if(panorama.getVisible() && $("#pano").is(':hidden')){
+            $("#pano").show();
+            $("#map_canvas").removeClass('bigmap');
+            $("#map_canvas").addClass('minimap');
+            google.maps.event.trigger(map, 'resize');
+            map.setCenter(panorama.getPosition());
+
+        }else if(!panorama.getVisible()) {
+            $("#pano").hide();  
+            $("#map_canvas").removeClass('minimap');
+            $("#map_canvas").addClass('bigmap');             
+            google.maps.event.trigger(map, 'resize');
+            map.setCenter(panorama.getPosition());
+    
+        }
+        google.maps.event.addListener(panorama, "closeclick", function() {
+            $("#pano").hide();  
+            $("#map_canvas").removeClass('minimap');
+            $("#map_canvas").addClass('bigmap');         
+            google.maps.event.trigger(map, 'resize');
+            map.setCenter(panorama.getPosition());
+        });
+    });        
+  }
+</script>
+</head>
+<body onload="initialize()"> 
+<div id="container">
+<div id="map_canvas" class="bigmap"></div>
+<div id="pano" class="bigmap" style="display:none"></div>
+</div>
+</body>
+</html>

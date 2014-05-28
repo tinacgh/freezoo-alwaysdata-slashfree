@@ -1,0 +1,535 @@
+<html>
+    <head>
+    <title>Pedidos Pontual</title>
+    <style>
+      body, td {
+      font-family: Arial, sans-serif;
+      font-size: 12px; 
+      }
+      .header { position: fixed; top: 0px; background-color: #eee; padding: 3px; }
+      .hidden { visibility: hidden; }        
+    </style>
+  </head>
+
+  <body>
+    <div class="header">
+  <a href="/pedidos/todos/">Todos</a> |
+
+  <a href="/pedidos/prodsreserva/">P Resv.</a> -
+  <a href="/pedidos/prodscontainer/">P Cont.</a> -
+  <a href="/pedidos/prodsdesistencia/">P Desist.</a> |
+
+  <a href="/pedidos/total/">Total</a> -
+  <a href="/pedidos/produtos/">Prods.</a> -
+  <a href="/pedidos/clientes/">Clientes</a> -
+  <a href="/pedidos/listcontainers/">List cont.</a> |
+  
+  <a href="/pedidos/reserva/">Resv.</a> -
+  <a href="/pedidos/container/">Cont.</a> -
+  <a href="/pedidos/desistencia/">Desist.</a> |
+
+  <a href="/pedidos/vencem/">Vencem</a> -
+  <a href="/pedidos/vencehoje/">Vence hoje</a> -
+  <a href="/pedidos/vencidos/">Vencido</a> |
+
+  <a href="/admin/" target="_blank">Admin</a>
+</div>
+
+    <br>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 04/09/2013, quarta-feira</td>
+        <td align="right">
+          ID: 66
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: 09/09/2013, segunda-feira</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/16/cliente">Allury</a></td>
+        <td align="right">Cód. Cliente: 3221</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 30 dias -21% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Rodrigo</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">23000</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143085A/produto/"><b>143085A</b> Jg ferramentas de precisao c/ 6 pçs e lanterna</a> - 
+                <a href="/pedidos/143085A/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+            <tr>
+              <td align="right">23000</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143085P/produto/"><b>143085P</b> Jg ferramentas de precisao c/ 6 pçs e lanterna</a> - 
+                <a href="/pedidos/143085P/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+            <tr>
+              <td align="right">16700</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143085V/produto/"><b>143085V</b> Jg ferramentas de precisao c/ 6 pçs e lanterna</a> - 
+                <a href="/pedidos/143085V/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: reserva
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+        </td>
+        <td>Extra: <b>Gabriela - skype</b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/66/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(66);">
+          <a href="/pedidos/vencem/66/delete/" id="66" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 04/09/2013, quarta-feira</td>
+        <td align="right">
+          ID: 2
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: 06/09/2013, sexta-feira</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/2/cliente">Jessica Rodrigues</a></td>
+        <td align="right">Cód. Cliente: 3567</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: a vista -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Marlene</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">400</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143036/produto/"><b>143036</b> Kit churrasco c/ 4 pçs</a> - 
+                <a href="/pedidos/143036/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Aguardar desistencia
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+        </td>
+        <td>Extra: <b>G - cobrar Haz (Marcia) ou Mab (Celia)</b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/2/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(2);">
+          <a href="/pedidos/vencem/2/delete/" id="2" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 04/09/2013, quarta-feira</td>
+        <td align="right">
+          ID: 3
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: 09/09/2013, segunda-feira</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/3/cliente">PR da CR Ortunho</a></td>
+        <td align="right">Cód. Cliente: 3314</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: a vista -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Marlene</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">90</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143053/produto/"><b>143053</b> Binoculos</a> - 
+                <a href="/pedidos/143053/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Aguardar desistencia
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+        </td>
+        <td>Extra: <b>F - cobrar Rafael Correa (Marcia)</b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/3/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(3);">
+          <a href="/pedidos/vencem/3/delete/" id="3" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 05/09/2013, quinta-feira</td>
+        <td align="right">
+          ID: 1
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: 10/09/2013, terça-feira</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/1/cliente">Pepperone</a></td>
+        <td align="right">Cód. Cliente: 3700</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 30 dias -21% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Rodrigo</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">1000</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/140395/produto/"><b>140395</b> Garrafa termica de inox - 750 mL</a> - 
+                <a href="/pedidos/140395/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Reserva
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+        </td>
+        <td>Extra: <b></b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/1/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(1);">
+          <a href="/pedidos/vencem/1/delete/" id="1" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 06/09/2013, sexta-feira</td>
+        <td align="right">
+          ID: 42
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: 11/09/2013, quarta-feira</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/9/cliente">XBZ - Xia Bao Zhu</a></td>
+        <td align="right">Cód. Cliente: 2742</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 15 dias -22% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Dona Sonia</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">5347</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143186A/produto/"><b>143186A</b> Cantil de plastico com canudo - 400 mL</a> - 
+                <a href="/pedidos/143186A/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Reserva
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+        </td>
+        <td>Extra: <b></b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/42/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(42);">
+          <a href="/pedidos/vencem/42/delete/" id="42" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 06/09/2013, sexta-feira</td>
+        <td align="right">
+          ID: 43
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: 11/09/2013, quarta-feira</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/16/cliente">Allury</a></td>
+        <td align="right">Cód. Cliente: 3221</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 30 dias -21% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Rodrigo</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">300</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/141864/produto/"><b>141864</b> Lanterna dinamo de plastico fumê</a> - 
+                <a href="/pedidos/141864/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: Reserva
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+        </td>
+        <td>Extra: <b></b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/43/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(43);">
+          <a href="/pedidos/vencem/43/delete/" id="43" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <table border="0" width="55%">
+      <tr>
+        <td>Data: 06/09/2013, sexta-feira</td>
+        <td align="right">
+          ID: 60
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vencimento: 11/09/2013, quarta-feira</td>
+      </tr>
+
+      <tr>
+        <td>Razão Social: <a href="/pedidos/51/cliente">V &amp; C 1001 Brindes</a></td>
+        <td align="right">Cód. Cliente: 2982</td>
+      </tr>
+      
+      <tr>
+        <td colspan="2">Condições de pagamento: 15 dias -20% desconto</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">Vendedor: Marcia</td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          <table border="0" width="100%">
+            
+            <tr>
+              <td align="right">2200</td>
+              <td align="center">pç</td>
+              <td>
+                <a href="/pedidos/143084/produto/"><b>143084</b> Kit vinho c/ 4 pçs</a> - 
+                <a href="/pedidos/143084/foto/" target="_blank">(foto)</a>
+              </td>
+            </tr>
+            
+          </table>
+        </td>
+      </tr>
+
+      <tr>
+        <td colspan="2">
+          Observações: reserva
+        </td>
+      </tr>
+
+      <tr>
+        <td width="58%">Container:
+          
+        </td>
+        <td>Extra: <b></b></td>
+      </tr>
+      <tr>
+        <td>
+          <a href="/admin/pedidos/pedido/60/" target="_blank">Editar</a>
+        </td>
+        <td>
+          clique para apagar: 
+          <input type="checkbox" onclick="toggleText(60);">
+          <a href="/pedidos/vencem/60/delete/" id="60" class="hidden">(sim)</a>
+        </td>
+      </tr>
+    </table>
+    <hr>
+    
+    <script>
+      function toggleText(id) {
+        document.getElementById(id).style.visibility="visible";
+      }
+    </script>
+  </body>
+</html>
+
+

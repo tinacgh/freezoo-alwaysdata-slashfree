@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+  <!-- TODO
+    fix "press enter to submit"
+    checkbox to bias results to current city
+    autocomplete
+  -->
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <title>Freezoo maps</title>
+    <style type="text/css">
+      /*demo page css*/
+      html { height: 100%; margin: 0; padding: 0; }
+
+      body { font:  "Trebuchet MS", Arial, sans-serif; font-size: 10px; height: 100%; margin: 0; padding: 0; }
+
+      #map_canvas { position: absolute; top: 100px; bottom: 0; left: 0; right: 0; margin: 0; z-index: 1; }
+
+      #instructions { position: absolute; top: 132px; right: 5px; width: 150px; padding: 5px; font-size: 11px; font-family: Arial, sans-serif; background-color: #fff; border: 1px dotted gray; z-index: 2; }
+
+      #tabs { position: absolute; width: 100%; height: 100px; top: 0; z-index: 3; }
+
+      #tabs-1 { float: left; white-space: nowrap; }
+      #tabs-2 { float: left; white-space: nowrap; }
+
+      #info { position: absolute; top: 5px; right: 5px; z-index: 4; }
+
+      #log { position: absolute; font-size: 14px; padding: 3px; width: 300px; height: 14px; bottom: 0px; left: 72px; background-color: #fff; border: 1px dotted gray; opacity: 0.6; z-index: 5; }
+
+      .ui_block { display: block; float: left; text-align: right; padding: 0px 10px 0px 0px; }
+      .ui_block_left { display: block; float: left; text-align: left; padding: 0px 10px 0px 0px; }
+    </style>
+    <link type="text/css" href="css/smoothness/jquery-ui-1.8.21.custom.css" rel="stylesheet" />
+    <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.8.21.custom.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
+    <script type="text/javascript">
+      $(function(){
+        if(location.toString().substr(-2,2) != "?#") {
+          location += "?#";
+        }
+        // Tabs
+        $('#tabs').tabs();
+        $('#info').on('click', function() {
+          $('#instructions').toggle();
+        });
+        $('#instructions').html(instructionsText["address"]);
+        initialize();
+      });
+
+      var map;
+      
+      // MODES: address, distance, bounds
+      var mode = "address";
+
+      function switchMode(newMode) {
+        mode = newMode;
+        $('#instructions').html(instructionsText[newMode]);
+        print("new mode: " + mode);
+      }
+
+      function print(msg) {
+        $("#log").html(msg);
+      }
+
+      function formatLatLng(latLng) {
+        return latLng.lat().toFixed(6) + "," + latLng.lng().toFixed(6);
+      }
+
+      function initialize() {
+        var mapOptions = { center: new google.maps.LatLng(0.0, 0.0), zoom: 2,
+          mapTypeId: google.maps.MapTypeId.ROADMAP };
+        map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+        var geocoder = new google.maps.Geocoder();
+
+        // mode variables
+
+        ////////////////////
+        // ADDRESS FUNCTIONS
+        var address = {};
+        address.markers = [];
+
+        address.getBoth = function(latLng) {
+          print("set address for " + formatLatLng(latLng));
+          address.latLngToAddress(latLng);
+          $("#address_latlng").val(formatLatLng(latLng));
+          address.addMarker(latLng);
+        };
+
+        address.addressToLatLng = function(addressStr) {
+          geocoder.geocode({'address': addressStr}, function(results, status) {
+            if(status == google.maps.GeocoderStatus.OK) {
+              $("#address_latlng").val(formatLatLng(results[0].geometry.location));
+              map.setCenter(results[0].geometry.location);
+              address.addMarker(results[0].geometry.location);
+            }
+            else {
+              $("#address_latlng").val("");
+              print("Warning: Geocoder status " + status);
+            }
+          });
+        };
+
+        address.latLngStrToAddress = function(latLngStr) {
+          var elems = $("#address_latlng").val().replace(/[\(\)]+/g,"").split(",");
+          var latLng = new google.maps.LatLng(elems[0], elems[1]);
+          map.setCenter(latLng);
+          address.addMarker(latLng);
+          address.latLngToAddress(latLng);
+        };
+
+        address.latLngToAddress = function(latLng) {
+          geocoder.geocode( {'latLng': latLng}, function(results, status) {
+            if(status == google.maps.GeocoderStatus.OK) {
+              if(results[0]) {
+                $("#address_address").val(results[0].formatted_address);
+              }
+              else {
+                print("No results.");
+              }
+            }
+            else {
+              $("#address_address").val("");
+              print("Warning: Geocoder status " + status);
+            }
+          });
+        };
+
+        address.addMarker = function(latLng) {
+          var newMarker = new google.maps.Marker({
+            map: map,
+            position: latLng
+          });
+          google.maps.event.addListener(newMarker, 'click', function() {
+            map.setCenter(this.getPosition());
+            map.setZoom(16);
+          });
+          google.maps.event.addListener(newMarker, 'rightclick', function() {
+            this.setMap(null);
+          });
+          address.markers.push(newMarker);
+          //map.setZoom(parseInt($("input:radio[name=zoomlevel]:checked").val()));
+        };
+
+        address.showMarkers = function() {
+          for(var i = 0; i < address.markers.length; i++) {
+            address.markers[i].setVisible(true);
+          }
+        }
+        address.hideMarkers = function() {
+          for(var i = 0; i < address.markers.length; i++) {
+            address.markers[i].setVisible(false);
+          }
+        }
+
+        $('#address_to_latlng').on('click', function() {
+          print("geocode " + $('#address_address').val());
+          address.addressToLatLng($('#address_address').val());
+        });
+
+        $('#latlng_to_address').on('click', function() {
+          print("reverse geocode " + $('#address_latlng').val());
+          address.latLngStrToAddress($('#address_latlng').val());
+        });
+
+        $('#show_address_markers').on('click', function() {
+          address.showMarkers();
+        });
+
+        $('#hide_address_markers').on('click', function() {
+          address.hideMarkers();
+        });
+
+        $('#zapSP').on('click', function() {
+          map.setCenter(new google.maps.LatLng(-23.548943,-46.638818));
+          map.setZoom(15);
+        });
+
+
+        ////////////////////
+        // DISTANCE FUNCTIONS
+        var distance = {};
+        distance.nodes = [];
+        distance.line = new google.maps.Polyline({
+          map: map,
+          strokeColor: "#0000FF",
+          strokeOpacity: 0.5,
+          strokeWeight: 10
+        });
+
+        distance.addNode = function(latLng, where) {
+          if(typeof where === 'undefined') {
+            where = distance.nodes.length;
+          }
+          var tmpNode = new google.maps.Marker({
+            map: map,
+            position: latLng,
+            icon: "mm_red.png",
+            animation: google.maps.Animation.DROP,
+            draggable: true
+          });
+          google.maps.event.addListener(tmpNode, 'click', function(event) {
+                             print("node clicked" + where);
+                             });
+          google.maps.event.addListener(tmpNode, 'rightclick', function(event) {
+            tmpNode.setMap(null);
+            distance.drawPath();
+          });
+          google.maps.event.addListener(tmpNode, 'drag', function(event) {
+            distance.drawPath();
+          });
+          distance.nodes.splice(where,0,tmpNode);
+          //print("added " + formatLatLng(latLng));
+          distance.drawPath();
+        };
+
+        google.maps.event.addListener(distance.line, 'click', function(event) {
+          print ("line clicked"+distance.nodes.length);
+          for(var i = 0; i < distance.nodes.length - 1; i++) {
+            if(isPointOnSegment(distance.nodes[i].getPosition(),
+               distance.nodes[i+1].getPosition(),event.latLng)) {
+              distance.addNode(event.latLng, i+1);
+              break;
+            }
+          }
+        });
+
+        distance.drawPath = function() {
+          distance.countNodes();
+          var coords = [];
+          for (var i = 0; i < distance.nodes.length; i++) {
+            coords.push(distance.nodes[i].getPosition());
+          }
+          distance.line.setPath(coords);
+
+          meters = google.maps.geometry.spherical.computeLength(coords);
+          $("#distance_km").val((meters/1000).toFixed(3));
+          $("#distance_mi").val((meters/1609.344).toFixed(3));
+        }
+
+        distance.countNodes = function() {
+          var count = 0;
+          for (var i = distance.nodes.length - 1; i >= 0; i--) {
+            if (distance.nodes[i].getMap() == null) {
+              distance.nodes.splice(i, 1);
+            }
+            else {
+              count++;
+            }
+          }
+          return count;
+        }
+
+        distance.clearNodes = function() {
+          for(var i = 0; i < distance.nodes.length; i++) {
+            distance.nodes[i].setMap(null);
+          }
+          distance.drawPath();
+        }
+
+        function isPointOnSegment(gpsPoint1, gpsPoint2, gpsPoint ){
+          // Written by Engineer
+          // http://stackoverflow.com/questions/10018003/which-segment-of-a-polyline-was-clicked
+          // 1st version, ignores perfectly horiz and vert. lines
+          var p1 = map.getProjection().fromLatLngToPoint( gpsPoint1 );
+          var p2 = map.getProjection().fromLatLngToPoint( gpsPoint2 );
+          var p = map.getProjection().fromLatLngToPoint( gpsPoint );
+          //Parametric form of line equation is:
+          //--------------------------------
+          //      x = x1 + t(x2-x1)
+          //      y = y1 + t(y2-y1) 
+          //--------------------------------
+          //'p' is on [p1,p2] segment,if 't' is number from [0,1]
+  
+          var t_x = (p.x - p1.x)/(p2.x-p1.x);
+          var t_y = (p.y - p1.y)/(p2.y-p1.y);
+          return ( eq(t_x,t_y) && t_x >= 0 && t_x <= 1 && t_y >= 0 && t_y <= 1);
+        } 
+
+        function eq(a, b) {
+          return (Math.abs(a-b) < 0.01);
+        }
+
+        $("#reset_distance").on('click', function() {
+          distance.clearNodes();
+        });
+
+        // event handlers
+        var clickResponse = {};
+        
+        clickResponse.address = address.getBoth;
+        clickResponse.distance = distance.addNode;
+
+        // event listeners
+        ////////////////////
+        // MAP CLICK
+        google.maps.event.addListener(map, 'click', function(event) {
+          clickResponse[mode](event.latLng);
+        });
+      }
+
+      // instructions text
+      var instructionsText = {};
+      instructionsText["address"] = "<b>left click:</b> get address and coordinates<br><b>right click:</b> remove marker";
+
+      instructionsText["distance"] = "<b>left click:</b> add node<br><b>right click:</b> delete node<br>drag nodes to alter path<br>click on path to add a node";
+
+      instructionsText["bounds"] = "<b>left click:</b> set corner and end selection";
+    </script>
+  </head>
+  <body>
+    <!-- Tabs -->
+    <div id="tabs">
+      <ul>
+	<li><a href="#tabs-1" onclick="switchMode('address');">Address</a></li>
+	<li><a href="#tabs-2" onclick="switchMode('distance')">Distance</a></li>
+	<li><a href="#tabs-3" onclick="switchMode('bounds')">Bounds</a></li>
+	<li><a href="#tabs-4" onclick="switchMode('styles')">Styles</a></li>
+        <li>
+        </li>
+      </ul>
+      <div id="tabs-1">
+        <div class="ui_block">
+          <form action="#">
+            address: <input id="address_address" size="50"><span class="ui-icon ui-icon-circle-close" style="float: right; margin-right: .3em;" onclick="$('#address_address').val('');"></span><br>
+<!--            <b>zoom:</b>
+            (no change) <input type="radio" name="zoomlevel" value="-1">
+            city <input type="radio" name="zoomlevel" value="12">
+            street <input type="radio" name="zoomlevel" value="16" checked>
+-->
+            <input type="submit" id="address_to_latlng" value="get coordinates for this address">
+            <button id="zapSP">zap to SP</button>
+          </form>
+        </div>
+        <div class="ui_block">
+          <form action="#">
+            lat, lng coords: <input id="address_latlng" size="30"><span class="ui-icon ui-icon-circle-close" style="float: right; margin-right: .3em;" onclick="$('#address_latlng').val('');"></span><br>
+            <input type="submit" id="latlng_to_address" value="get nearest address with these coordinates">
+          </form>
+        </div>
+        <div class="ui_block">
+          <button id="show_address_markers">Show all place markers</button><br>
+          <button id="hide_address_markers">Hide all place markers</button>
+        </div>
+      </div>
+      <div id="tabs-2">
+        <div class="ui_block_left">
+          <input id="distance_km"> km<br>
+          <input id="distance_mi"> mi
+        </div>
+        <div class="ui_block">
+          <button id="reset_distance">clear distance path</button>
+        </div>
+      </div>
+      <div id="tabs-3">Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.</div>
+      <div id="tabs-4">B&W style, sliders (maybe)</div>
+    </div>
+    <div id="map_canvas"></div>
+    <div id="instructions"></div>
+    <div class="ui-widget" id="info">
+      <div class="ui-state-highlight ui-corner-all">
+        <span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span> show/hide help
+      </div>
+    </div>
+    <div id="log"></div>
+  </body>
+</html>
